@@ -1,0 +1,178 @@
+## Work & Diligence
+- "There is no substitute for hard work." – Thomas Edison
+- "The heights by great men reached and kept were not attained by sudden flight, but they, while their companions slept, were toiling upward in the night." – Henry Wadsworth Longfellow
+- "Opportunity is missed by most people because it is dressed in overalls and looks like work." – Thomas Edison
+- "Genius is one percent inspiration and ninety-nine percent perspiration." – Disputed
+- "Thinking is the hardest work there is, which is probably the reason why so few engage in it." – Henry Ford
+- "Pleasure in the job puts perfection in the work." – Aristotle
+- "Inspiration exists, but it has to find you working." – Pablo Picasso
+- "I never could have done what I have done without the habits of punctuality, order, and diligence, without the determination to concentrate myself on one subject at a time." – Charles Dickens
+- "The mechanic, who wishes to do his work well, must first sharpen his tools." – Confucius
+
+## Success & Achievement
+- "Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do." – Pelé
+- "Many of life's failures are people who did not realize how close they were to success when they gave up." – Thomas Edison
+- "Success usually comes to those who are too busy to be looking for it." – Henry David Thoreau
+- "If you really look closely, most overnight successes took a long time." – Steve Jobs
+- "Success is to be measured not so much by the position that one has reached in life as by the obstacles which he has overcome." – Booker T. Washington
+- "It is better to fail in originality than to succeed in imitation." – Herman Melville
+- "Strive not to be a success, but rather to be of value." – Albert Einstein
+- "If you want to succeed you should strike out on new paths, rather than travel the worn paths of accepted success." – John D. Rockefeller
+- "Growth is never by mere chance; it is the result of forces working together." – James Cash Penney
+- "Big results require big ambitions." – Heraclitus
+- "There is nothing impossible to him who will try." – Alexander the Great
+- "Fortune favors the bold." – Virgil
+
+## Perseverance & Resilience
+- "Energy and persistence conquer all things." – Benjamin Franklin
+- "If you can't fly then run, if you can't run then walk, if you can't walk then crawl, but whatever you do you have to keep moving forward." – Martin Luther King Jr.
+- "Great works are performed not by strength but by perseverance." – Samuel Johnson
+- "You just can't beat the person who never gives up." – Babe Ruth
+- "Defeat is not the worst of failures. Not to have tried is the true failure." – George Edward Woodberry
+- "I do not think that there is any other quality so essential to success of any kind as the quality of perseverance. It overcomes almost everything, even nature." – John D. Rockefeller
+- "Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time." – Thomas Edison
+- "Failure is simply the opportunity to begin again, this time more intelligently." – Henry Ford
+- "The impediment to action advances action. What stands in the way becomes the way." – Marcus Aurelius
+- "Difficulties strengthen the mind, as labor does the body." – Seneca
+- "It is not because things are difficult that we do not dare; it is because we do not dare that they are difficult." – Seneca
+- "The greater the difficulty, the more glory in surmounting it." – Epicurus
+- "Yield not to disasters, but press onward the more bravely." – Virgil
+- "Our greatest glory is not in never falling, but in rising every time we fall." – Confucius
+- "A gem cannot be polished without friction, nor a man perfected without trials." – Chinese Proverb
+- "Pearls don't lie on the seashore. If you want one, you must dive for it." – Chinese Proverb
+- "Patience is bitter, but its fruit is sweet." – Jean-Jacques Rousseau
+- "That which does not kill us makes us stronger." – Friedrich Nietzsche
+- "The world breaks everyone, and afterward, some are strong at the broken places." – Ernest Hemingway
+- "Never confuse a single defeat with a final defeat." – F. Scott Fitzgerald
+- "Vitality shows in not only the ability to persist but the ability to start over." – F. Scott Fitzgerald
+- "But man is not made for defeat. A man can be destroyed but not defeated." – Ernest Hemingway
+- "Perseverance, secret of all triumphs." – Victor Hugo
+- "They can conquer who believe they can." – Virgil
+- "In the depth of winter, I finally learned that within me there lay an invincible summer." – Albert Camus
+
+## Knowledge, Learning, & Wisdom
+- "The more you learn, the more you earn." – Warren Buffett
+- "We cannot solve our problems with the same thinking we used when we created them." – Albert Einstein
+- "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less." – Marie Curie
+- "The man who does not read has no advantage over the man who cannot read." – Unknown
+- "An investment in knowledge pays the best interest." – Benjamin Franklin
+- "As long as you live, keep learning how to live." – Seneca
+- "If you want to improve, be content to be thought foolish and stupid." – Epictetus
+- "No man was ever wise by chance." – Seneca
+- "The roots of education are bitter, but the fruit is sweet." – Aristotle
+- "To know what you know and what you do not know, that is true knowledge." – Confucius
+- "A book holds a house of gold." – Chinese Proverb
+- "Teachers open the door, but you must enter by yourself." – Chinese Proverb
+- "The knowledge of anything, since all things have causes, is not acquired or complete unless it is known by its causes." – Ibn Sina
+- "It is not enough to have a good mind; the main thing is to use it well." – René Descartes
+- "I am always doing that which I cannot do, in order that I may learn how to do it." – Pablo Picasso
+- "Employ your time in improving yourself by other men's writings so that you shall come easily by what others have labored hard for." – Socrates
+- "The foundation of every state is the education of its youth." – Diogenes
+- "I hear and I forget. I see and I remember. I do and I understand." – Xunzi
+- "If you would not be forgotten, as soon as you are dead and rotten, either write things worth reading, or do things worth the writing." – Benjamin Franklin
+
+## Creation, Design, & Innovation
+- "Architecture should speak of its time and place, but yearn for timelessness." – Frank Gehry
+- "Quality is never an accident; it is always the result of high intention, sincere effort, intelligent direction and skillful execution." – William A. Foster
+- "Every act of creation is first an act of destruction." – Pablo Picasso
+- "Design is not just what it looks like and feels like. Design is how it works." – Steve Jobs
+- "To create something exceptional, your mindset must be relentlessly focused on the smallest detail." – Giorgio Armani
+- "Creation is a drug I cannot do without." – Cecil B. DeMille
+- "A solid foundation is required to build anything of lasting value." – Anonymous
+- "What we build, builds us." – Anonymous
+- "The secret of change is to focus all of your energy, not on fighting the old, but on building the new." – Socrates
+- "Nothing is built on stone; all is built on sand, but we must build as if the sand were stone." – Jorge Luis Borges
+- "Innovation distinguishes between a leader and a follower." – Steve Jobs
+- "Details matter, it's worth waiting to get it right." – Steve Jobs
+- "Simplicity is the ultimate sophistication." – Unknown
+- "No great thing is created suddenly." – Epictetus
+- "To create is to live twice." – Albert Camus
+- "By believing passionately in something that still does not exist, we create it." – Nikos Kazantzakis
+- "If there's a book that you want to read, but it hasn't been written yet, then you must write it." – Toni Morrison
+- "Creativity takes courage." – Henri Matisse
+- "Genius is the ability to renew one's emotions in daily experience." – Paul Cézanne
+- "Great things are done by a series of small things brought together." – Vincent van Gogh
+
+## Wealth & Value
+- "Wealth consists not in having great possessions, but in having few wants." – Epictetus
+- "The real measure of your wealth is how much you'd be worth if you lost all your money." – Anonymous
+- "Money grows on the tree of persistence." – Japanese Proverb
+- "A business that makes nothing but money is a poor business." – Henry Ford
+- "Rule No. 1: Never lose money. Rule No. 2: Never forget Rule No. 1." – Warren Buffett
+- "He has the most who is most content with the least." – Diogenes
+- "By desiring little, a poor man makes himself rich." – Democritus
+
+## Action & Execution
+- "Action is the foundational key to all success." – Pablo Picasso
+- "Knowing is not enough; we must apply. Being willing is not enough; we must do." – Johann Wolfgang von Goethe
+- "The secret of getting ahead is getting started." – Unknown
+- "By failing to prepare, you are preparing to fail." – Benjamin Franklin
+- "Luck is what happens when preparation meets opportunity." – Seneca
+- "If a man knows not to which port he sails, no wind is favorable." – Seneca
+- "While we waste our time hesitating and postponing, life is slipping past." – Seneca
+- "First say to yourself what you would be; and then do what you have to do." – Epictetus
+- "The beginning is the most important part of the work." – Plato
+- "A journey of a thousand miles begins with a single step." – Lao Tzu
+- "When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps." – Confucius
+- "The best time to plant a tree was 20 years ago. The second best time is now." – Chinese Proverb
+- "Victorious warriors win first and then go to war, while defeated warriors go to war first and then seek to win." – Sun Tzu
+- "As you start to walk on the way, the way appears." – Jalal ad-Din Muhammad Rumi
+- "A path is made by walking on it." – Zhuangzi
+- "Commitment is an act, not a word." – Jean-Paul Sartre
+- "You've got to jump off cliffs all the time and build your wings on the way down." – Ray Bradbury
+- "The philosophers have only interpreted the world in various ways; the point is to change it." – Karl Marx
+- "Great acts are made up of small deeds." – Lao Tzu
+- "He who conquers others is strong; he who conquers himself is mighty." – Lao Tzu
+- "The man who moves a mountain begins by carrying away small stones." – Confucius
+
+## Character & Self-Mastery
+- "The successful warrior is the average man, with laser-like focus." – Bruce Lee
+- "Quality means doing it right when no one is looking." – Henry Ford
+- "Waste no more time arguing about what a good man should be. Be one." – Marcus Aurelius
+- "To conquer oneself is the best and noblest victory." – Plato
+- "It is folly for a man to pray to the gods for that which he has the power to obtain by himself." – Epicurus
+- "To find yourself, think for yourself." – Socrates
+- "Be as you wish to seem." – Socrates
+- "Wheresoever you go, go with all your heart." – Confucius
+- "He will win who, prepared himself, waits to take the enemy unprepared." – Sun Tzu
+- "He who fears he will suffer, already suffers because he fears." – Michel de Montaigne
+- "Man is nothing else but what he makes of himself." – Jean-Paul Sartre
+- "There is nothing noble in being superior to your fellow man; true nobility is being superior to your former self." – Disputed
+- "Everyone thinks of changing the world, but no one thinks of changing himself." – Leo Tolstoy
+- "It takes something more than intelligence to act intelligently." – Fyodor Dostoevsky
+- "Honor bespeaks worth. Confidence begets trust. Service brings satisfaction. Cooperation proves the quality of leadership." – J.C. Penney
+- "Courage is knowing what not to fear." – Plato
+- "We acquire a particular quality by constantly acting in a particular way." – Aristotle
+- "He who knows, does not speak. He who speaks, does not know." – Lao Tzu
+- "I have just three things to teach: simplicity, patience, compassion. These three are your greatest treasures." – Lao Tzu
+- "Singleness of purpose is one of the chief essentials for success in life, no matter what may be one's aim." – John D. Rockefeller
+
+## Perspective & Philosophy
+- "Someone is sitting in the shade today because someone planted a tree a long time ago." – Warren Buffett
+- "The construction of a life is never finished." – Anonymous
+- "Keep your eyes on the stars, and your feet on the ground." – Theodore Roosevelt
+- "Your time is limited, don't waste it living someone else's life." – Steve Jobs
+- "Risk comes from not knowing what you're doing." – Warren Buffett
+- "You have power over your mind - not outside events. Realize this, and you will find strength." – Marcus Aurelius
+- "Dwell on the beauty of life. Watch the stars, and see yourself running with them." – Marcus Aurelius
+- "Let each thing you would do, say, or intend, be like that of a dying person." – Marcus Aurelius
+- "Make the best use of what is in your power, and take the rest as it happens." – Epictetus
+- "An unexamined life is not worth living." – Socrates
+- "To be evenminded is the greatest virtue." – Heraclitus
+- "In the midst of chaos, there is also opportunity." – Sun Tzu
+- "Be not afraid of growing slowly, be afraid only of standing still." – Chinese Proverb
+- "He who would learn to fly one day must first learn to stand and walk and run and climb and dance; one cannot fly into flying." – Friedrich Nietzsche
+- "No one can construct for you the bridge upon which precisely you must cross the stream of life, no one but you yourself alone." – Friedrich Nietzsche
+- "He who has a why to live for can bear almost any how." – Friedrich Nietzsche
+- "Life can only be understood backwards; but it must be lived forwards." – Søren Kierkegaard
+- "Every man takes the limits of his own field of vision for the limits of the world." – Arthur Schopenhauer
+- "Let everything happen to you: beauty and terror. Just keep going. No feeling is final." – Rainer Maria Rilke
+- "Only those who will risk going too far can possibly find out how far one can go." – T.S. Eliot
+- "Beyond a certain point there is no return. This point has to be reached." – Franz Kafka
+- "You cannot create experience. You must undergo it." – Albert Camus
+- "Not everything that is faced can be changed, but nothing can be changed until it is faced." – James Baldwin
+- "To see what is in front of one's nose needs a constant struggle." – George Orwell
+- "Better a little which is well done, than a great deal imperfectly." – Plato
+- "Now is no time to think of what you do not have. Think of what you can do with what there is." – Ernest Hemingway
+- "If you hear a voice within you say 'you cannot paint,' then by all means paint, and that voice will be silenced." – Vincent van Gogh
+- "I am seeking, I am striving, I am in it with all my heart." – Vincent van Gogh

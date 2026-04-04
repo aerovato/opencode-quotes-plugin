@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Git
+.git/
+.gitignore
+
+# OpenCode local config
+.opencode/
+
+# Development files
+bun.lock
+tsconfig.json
+organized.md
+.ignore
+node_modules/
