@@ -8,10 +8,12 @@ A motivational quotes plugin for OpenCode.
 
 ## Installation
 
-1. In OpenCode, press control + P to bring up the command prompt
-2. Search and select "Install Plugin"
-3. Enter `opencode-quotes-plugin`
-4. Restart OpenCode
+Run:
+```bash
+opencode plugin opencode-quotes-plugin -g
+```
+
+This will install the plugin globally.
 
 ## Usage
 
