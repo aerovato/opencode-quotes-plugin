@@ -1,9 +1,13 @@
 /** @jsxImportSource @opentui/solid */
 
-import type { TuiPlugin, TuiPluginModule, TuiThemeCurrent } from "@opencode-ai/plugin/tui"
-import { createMemo, For, Show } from "solid-js"
+import type {
+  TuiPlugin,
+  TuiPluginModule,
+  TuiThemeCurrent,
+} from "@opencode-ai/plugin/tui";
+import { createMemo, For, Show } from "solid-js";
 
-import { QUOTES } from "./quotes"
+import { QUOTES } from "./quotes";
 import { TextAttributes } from "@opentui/core";
 import { useTerminalDimensions } from "@opentui/solid";
 
@@ -15,7 +19,9 @@ function wordWrap(text: string, maxWidth: number): string[] {
     return [];
   }
   const totalLen = text.length;
-  const targetCharsPerLine = Math.ceil(totalLen / Math.ceil(totalLen / maxWidth));
+  const targetCharsPerLine = Math.ceil(
+    totalLen / Math.ceil(totalLen / maxWidth),
+  );
   const lines: string[] = [];
   let wordIndex = 0;
   let accumulatedWidth = 0;
@@ -48,14 +54,16 @@ function Quotes(props: { theme: TuiThemeCurrent }) {
   const split = quote.split("—");
   const author = split.at(-1)?.trim() || "";
   const text = split.slice(0, -1).join("—").trim();
-  
-  const dimensions = useTerminalDimensions()
-  const lines = createMemo(() => wordWrap(text, Math.min(MAX_QUOTES_WIDTH, dimensions().width - 8)));
+
+  const dimensions = useTerminalDimensions();
+  const lines = createMemo(() =>
+    wordWrap(text, Math.min(MAX_QUOTES_WIDTH, dimensions().width - 8)),
+  );
 
   return (
     <box width="100%" flexDirection="column">
       <For each={lines()}>
-        {(line) => (
+        {line => (
           <text alignSelf="center" style={{ fg: props.theme.text }}>
             {line}
           </text>
@@ -66,26 +74,30 @@ function Quotes(props: { theme: TuiThemeCurrent }) {
         attributes={TextAttributes.DIM}
         style={{ fg: props.theme.accent }}
       >
-        <em>
-          - {author}
-        </em>
+        <em>- {author}</em>
       </text>
     </box>
-  )
+  );
 }
 
 function View(props: { show: boolean; theme: TuiThemeCurrent }) {
   return (
-    <box minHeight={4} width="100%" maxWidth={MAX_QUOTES_WIDTH} alignItems="center" paddingY={2}>
+    <box
+      minHeight={4}
+      width="100%"
+      maxWidth={MAX_QUOTES_WIDTH}
+      alignItems="center"
+      paddingY={2}
+    >
       <Show when={props.show}>
         <Quotes theme={props.theme} />
       </Show>
     </box>
-  )
+  );
 }
 
-const tui: TuiPlugin = async (api) => {
-  api.plugins.deactivate("internal:home-tips")
+const tui: TuiPlugin = async api => {
+  api.plugins.deactivate("internal:home-tips");
 
   api.command.register(() => [
     {
@@ -95,22 +107,22 @@ const tui: TuiPlugin = async (api) => {
       category: "System",
       hidden: api.route.current.name !== "home",
       onSelect() {
-        api.kv.set("tips_hidden", !api.kv.get("tips_hidden", false))
-        api.ui.dialog.clear()
+        api.kv.set("tips_hidden", !api.kv.get("tips_hidden", false));
+        api.ui.dialog.clear();
       },
     },
-  ])
+  ]);
 
   api.slots.register({
     order: 100,
     slots: {
       home_bottom() {
-        const hidden = createMemo(() => api.kv.get("tips_hidden", false))
-        const show = createMemo(() => !hidden())
-        return <View show={show()} theme={api.theme.current} />
+        const hidden = createMemo(() => api.kv.get("tips_hidden", false));
+        const show = createMemo(() => !hidden());
+        return <View show={show()} theme={api.theme.current} />;
       },
     },
-  })
-}
+  });
+};
 
-export default { id: "opencode-quotes-plugin", tui } satisfies TuiPluginModule
+export default { id: "opencode-quotes-plugin", tui } satisfies TuiPluginModule;
