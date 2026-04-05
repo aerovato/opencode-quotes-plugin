@@ -21,7 +21,10 @@ function wordWrap(text: string, maxWidth: number): string[] {
   let accumulatedWidth = 0;
 
   while (wordIndex < words.length) {
-    let capacity = Math.min(targetCharsPerLine + accumulatedWidth, maxWidth);
+    let capacity = Math.min(
+      targetCharsPerLine + accumulatedWidth + (wordIndex === 0 ? 4 : 0),
+      maxWidth,
+    );
     let line = words[wordIndex]!;
     wordIndex++;
     while (wordIndex < words.length) {
