@@ -22,7 +22,7 @@ export const QUOTES = [
   "Energy and persistence conquer all things. — Benjamin Franklin",
   "If you can't fly then run, if you can't run then walk, if you can't walk then crawl. But whatever you do, you have to keep moving forward. — Martin Luther King Jr.",
   "You just can't beat the person who never gives up. — Babe Ruth",
-  "We choose to go to the moon ..., not because they are easy, but because they are hard, ..., because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too. — John F. Kennedy",
+  "We choose to go to the moon ..., because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too. — John F. Kennedy",
   "Failure is simply the opportunity to begin again, this time more intelligently. — Henry Ford",
   "The impediment to action advances action. What stands in the way becomes the way. — Marcus Aurelius",
   "Difficulties strengthen the mind, as labor does the body. — Seneca",

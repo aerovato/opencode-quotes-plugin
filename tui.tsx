@@ -1,29 +1,71 @@
 /** @jsxImportSource @opentui/solid */
 
 import type { TuiPlugin, TuiPluginModule, TuiThemeCurrent } from "@opencode-ai/plugin/tui"
-import { createMemo, Show } from "solid-js"
+import { createMemo, For, Show } from "solid-js"
 
 import { QUOTES } from "./quotes"
+import { TextAttributes } from "@opentui/core";
+import { useTerminalDimensions } from "@opentui/solid";
 
-function Tips(props: { theme: TuiThemeCurrent }) {
-  const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)]!;
-  const split = quote.split("—"); // NOTE: Emdash; regular dashes are for names.
-  const author = split.at(-1)?.trim();
-  const text = split.slice(0, -1).join("—").trim();
-  if (author === undefined || text === undefined) {
-    throw new Error(`Error: Malformed quote ${quote}.`)
+const MAX_QUOTES_WIDTH = 66;
+
+function wordWrap(text: string, maxWidth: number): string[] {
+  const words = text.split(" ");
+  if (words.length === 0) {
+    return [];
+  }
+  const totalLen = text.length;
+  const targetCharsPerLine = Math.ceil(totalLen / Math.ceil(totalLen / maxWidth));
+  const lines: string[] = [];
+  let wordIndex = 0;
+  let accumulatedWidth = 0;
+
+  while (wordIndex < words.length) {
+    let capacity = Math.min(targetCharsPerLine + accumulatedWidth, maxWidth);
+    let line = words[wordIndex]!;
+    wordIndex++;
+    while (wordIndex < words.length) {
+      const test = line + " " + words[wordIndex]!;
+      if (test.length <= capacity) {
+        line = test;
+        wordIndex++;
+      } else {
+        break;
+      }
+    }
+    lines.push(line);
+    accumulatedWidth = capacity - line.length;
   }
 
+  return lines;
+}
+
+function Quotes(props: { theme: TuiThemeCurrent }) {
+  const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)]!;
+  const split = quote.split("—");
+  const author = split.at(-1)?.trim() || "";
+  const text = split.slice(0, -1).join("—").trim();
+  
+  const dimensions = useTerminalDimensions()
+  const lines = createMemo(() => wordWrap(text, Math.min(MAX_QUOTES_WIDTH, dimensions().width - 8)));
+
   return (
-    <box maxWidth="100%" flexDirection="column" paddingX={6}>
-      <text alignItems="center" style={{ fg: props.theme.text }}>
-        {text}
-      </text>
+    <box width="100%" flexDirection="column">
+      <For each={lines()}>
+        {(line) => (
+          <text alignSelf="center" style={{ fg: props.theme.text }}>
+            {line}
+          </text>
+        )}
+      </For>
       <text
-        alignSelf={text.length < 40 ? "center" : "flex-end"}
-        style={{ fg: props.theme.primary }}
+        alignSelf={"center"}
+        attributes={TextAttributes.DIM}
+        style={{ fg: props.theme.accent }}
       >
-        - {author}
+        <em>
+          - {author}
+        </em>
       </text>
     </box>
   )
@@ -31,9 +73,9 @@ function Tips(props: { theme: TuiThemeCurrent }) {
 
 function View(props: { show: boolean; theme: TuiThemeCurrent }) {
   return (
-    <box minHeight={0} width="100%" maxWidth={75} alignItems="center" paddingY={2} flexShrink={1}>
+    <box minHeight={4} width="100%" maxWidth={MAX_QUOTES_WIDTH} alignItems="center" paddingTop={2}>
       <Show when={props.show}>
-        <Tips theme={props.theme} />
+        <Quotes theme={props.theme} />
       </Show>
     </box>
   )
