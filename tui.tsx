@@ -73,7 +73,7 @@ function Quotes(props: { theme: TuiThemeCurrent }) {
 
 function View(props: { show: boolean; theme: TuiThemeCurrent }) {
   return (
-    <box minHeight={4} width="100%" maxWidth={MAX_QUOTES_WIDTH} alignItems="center" paddingTop={2}>
+    <box minHeight={4} width="100%" maxWidth={MAX_QUOTES_WIDTH} alignItems="center" paddingY={2}>
       <Show when={props.show}>
         <Quotes theme={props.theme} />
       </Show>
