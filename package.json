@@ -1,5 +1,26 @@
 {
   "name": "opencode-quotes-plugin",
+  "description": "A motivational quotes plugin for OpenCode",
+  "keywords": [
+    "opencode",
+    "opencode-cli",
+    "opencode-ai",
+    "opentui",
+    "plugin",
+    "motivational",
+    "inspirational",
+    "motivation",
+    "inspiration",
+    "quotes",
+    "opentui",
+    "openai",
+    "codex",
+    "anthropic",
+    "claude-code",
+    "claude",
+    "gemini",
+    "copilot"
+  ],
   "version": "1.2.0",
   "type": "module",
   "exports": {
@@ -30,5 +51,9 @@
     "@types/bun": "latest",
     "solid-js": "^1.9.12",
     "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aerovato/opencode-quotes-plugin"
   }
 }
