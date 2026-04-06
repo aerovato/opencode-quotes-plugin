@@ -61,7 +61,7 @@ function Quotes(props: { theme: TuiThemeCurrent }) {
   );
 
   return (
-    <box width="100%" flexDirection="column">
+    <box width="100%" flexDirection="column" flexShrink={0}>
       <For each={lines()}>
         {line => (
           <text alignSelf="center" style={{ fg: props.theme.text }}>
@@ -71,8 +71,7 @@ function Quotes(props: { theme: TuiThemeCurrent }) {
       </For>
       <text
         alignSelf={"center"}
-        attributes={TextAttributes.DIM}
-        style={{ fg: props.theme.accent }}
+        style={{ fg: props.theme.warning }}
       >
         <em>- {author}</em>
       </text>
@@ -125,4 +124,4 @@ const tui: TuiPlugin = async api => {
   });
 };
 
-export default { id: "opencode-quotes-plugin", tui } satisfies TuiPluginModule;
+export default { id: "opencode-quotes-plugin-2", tui } satisfies TuiPluginModule;
