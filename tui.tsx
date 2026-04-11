@@ -71,9 +71,10 @@ function Quotes(props: { theme: TuiThemeCurrent }) {
       </For>
       <text
         alignSelf={"center"}
+        attributes={TextAttributes.ITALIC}
         style={{ fg: props.theme.warning }}
       >
-        <em>- {author}</em>
+        {author}
       </text>
     </box>
   );
