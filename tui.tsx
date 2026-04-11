@@ -124,4 +124,4 @@ const tui: TuiPlugin = async api => {
   });
 };
 
-export default { id: "opencode-quotes-plugin-2", tui } satisfies TuiPluginModule;
+export default { id: "opencode-quotes-plugin", tui } satisfies TuiPluginModule;
