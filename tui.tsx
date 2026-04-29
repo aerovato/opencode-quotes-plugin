@@ -98,13 +98,11 @@ const tui: TuiPlugin = async api => {
       onSelect() {
         const quotes = customQuotes();
         if (quotes.length === 0) {
-          api.ui.dialog.replace(() => (
-            <api.ui.Dialog onClose={() => api.ui.dialog.clear()}>
-              <box paddingLeft={4} paddingRight={4} paddingTop={1} paddingBottom={1}>
-                <text fg={api.theme.current.textMuted}>No custom quotes added.</text>
-              </box>
-            </api.ui.Dialog>
-          ));
+          api.ui.toast({
+            variant: "info",
+            message: "No custom quotes added.",
+          });
+          api.ui.dialog.clear();
           return;
         }
         api.ui.dialog.replace(() =>
