@@ -6,7 +6,7 @@ import type {
 } from "@opencode-ai/plugin/tui";
 import { createMemo, createSignal } from "solid-js";
 
-import { type QuoteSource, loadCustomQuotes, getQuotesForSource, parseQuoteInput, saveCustomQuote } from "./utils";
+import { type QuoteSource, loadCustomQuotes, getQuotesForSource, parseQuoteInput, saveCustomQuote, removeCustomQuote } from "./utils";
 import { View, SOURCE_LABELS } from "./ui";
 
 const tui: TuiPlugin = async api => {
@@ -85,6 +85,54 @@ const tui: TuiPlugin = async api => {
               api.ui.toast({
                 variant: "success",
                 message: "Quote added.",
+              });
+              api.ui.dialog.clear();
+            },
+          }),
+        );
+      },
+    },
+    {
+      title: "Remove quote",
+      description: "Remove a custom quote",
+      value: "quotes.remove",
+      category: "System",
+      hidden: api.route.current.name !== "home",
+      onSelect() {
+        const quotes = customQuotes();
+        if (quotes.length === 0) {
+          api.ui.dialog.replace(() => (
+            <api.ui.Dialog onClose={() => api.ui.dialog.clear()}>
+              <box paddingLeft={4} paddingRight={4} paddingTop={1} paddingBottom={1}>
+                <text fg={api.theme.current.textMuted}>No custom quotes added.</text>
+              </box>
+            </api.ui.Dialog>
+          ));
+          return;
+        }
+        api.ui.dialog.replace(() =>
+          api.ui.DialogSelect({
+            title: "Remove quote",
+            placeholder: "Search quotes...",
+            options: quotes.map(q => ({
+              title: q.quote,
+              description: q.author,
+              value: q,
+            })),
+            async onSelect(option) {
+              const ok = await removeCustomQuote(api.state.path.config, option.value);
+              if (!ok) {
+                api.ui.toast({
+                  variant: "error",
+                  message: "Failed to remove quote.",
+                });
+                api.ui.dialog.clear();
+                return;
+              }
+              setCustomQuotes(prev => prev.filter(q => q.quote !== option.value.quote || q.author !== option.value.author));
+              api.ui.toast({
+                variant: "success",
+                message: "Quote removed.",
               });
               api.ui.dialog.clear();
             },

@@ -41,6 +41,28 @@ export async function saveCustomQuote(configDir: string, quote: Quote): Promise<
   }
 }
 
+export async function removeCustomQuote(configDir: string, target: Quote): Promise<boolean> {
+  try {
+    const filePath = path.join(configDir, "quotes.json");
+    const raw = await fs.readFile(filePath, "utf-8");
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return false;
+    const existing = parsed.filter(
+      (item): item is Quote =>
+        typeof item === "object"
+        && item !== null
+        && typeof (item as Quote).quote === "string"
+        && typeof (item as Quote).author === "string",
+    );
+    const filtered = existing.filter(q => q.quote !== target.quote || q.author !== target.author);
+    if (filtered.length === existing.length) return false;
+    await fs.writeFile(filePath, JSON.stringify(filtered, null, 2) + "\n", "utf-8");
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function deduplicateQuotes(quotes: Quote[]): Quote[] {
   const seen = new Map<string, Quote>();
   for (const q of quotes) {
