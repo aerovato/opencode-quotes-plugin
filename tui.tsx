@@ -28,8 +28,7 @@ const tui: TuiPlugin = async api => {
       },
     },
     {
-      title: "Quote source",
-      description: "Specify quotes source",
+      title: "Set quote source",
       value: "quotes.source",
       category: "System",
       hidden: api.route.current.name !== "home",
@@ -53,7 +52,6 @@ const tui: TuiPlugin = async api => {
     },
     {
       title: "Add quote",
-      description: "Add a custom quote",
       value: "quotes.add",
       category: "System",
       hidden: api.route.current.name !== "home",
@@ -94,7 +92,6 @@ const tui: TuiPlugin = async api => {
     },
     {
       title: "Remove quote",
-      description: "Remove a custom quote",
       value: "quotes.remove",
       category: "System",
       hidden: api.route.current.name !== "home",
