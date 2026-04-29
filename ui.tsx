@@ -19,7 +19,7 @@ export const SOURCE_LABELS: Record<QuoteSource, string> = {
 function Quotes(props: { theme: TuiThemeCurrent; quotes: Quote[] }) {
   const quote = props.quotes[Math.floor(Math.random() * props.quotes.length)];
   const text = quote?.quote ?? "No custom quotes configured.";
-  const author = quote?.author ?? "Add a quote in ~/.config/opencode/quotes.json";
+  const author = quote?.author ?? "Add a custom quote via the `Add quote` command.";
 
   const dimensions = useTerminalDimensions();
   const lines = createMemo(() =>
