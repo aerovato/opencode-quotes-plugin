@@ -21,7 +21,7 @@
     "gemini",
     "copilot"
   ],
-  "version": "1.2.2",
+  "version": "1.3.0",
   "type": "module",
   "exports": {
     "./tui": {
@@ -30,7 +30,9 @@
   },
   "files": [
     "tui.tsx",
-    "quotes.ts"
+    "quotes.ts",
+    "utils.ts",
+    "ui.tsx"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit"

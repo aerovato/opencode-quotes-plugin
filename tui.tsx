@@ -3,101 +3,17 @@
 import type {
   TuiPlugin,
   TuiPluginModule,
-  TuiThemeCurrent,
 } from "@opencode-ai/plugin/tui";
-import { createMemo, For, Show } from "solid-js";
+import { createMemo, createSignal } from "solid-js";
 
-import { QUOTES } from "./quotes";
-import { TextAttributes } from "@opentui/core";
-import { useTerminalDimensions } from "@opentui/solid";
-
-const MAX_QUOTES_WIDTH = 66;
-
-function wordWrap(text: string, maxWidth: number): string[] {
-  const words = text.split(" ");
-  if (words.length === 0) {
-    return [];
-  }
-  const totalLen = text.length;
-  const targetCharsPerLine = Math.ceil(
-    totalLen / Math.ceil(totalLen / maxWidth),
-  );
-  const lines: string[] = [];
-  let wordIndex = 0;
-  let accumulatedWidth = 0;
-
-  while (wordIndex < words.length) {
-    let capacity = Math.min(
-      targetCharsPerLine + accumulatedWidth + (wordIndex === 0 ? 4 : 0),
-      maxWidth,
-    );
-    let line = words[wordIndex]!;
-    wordIndex++;
-    while (wordIndex < words.length) {
-      const test = line + " " + words[wordIndex]!;
-      if (test.length <= capacity) {
-        line = test;
-        wordIndex++;
-      } else {
-        break;
-      }
-    }
-    lines.push(line);
-    accumulatedWidth = capacity - line.length;
-  }
-
-  return lines;
-}
-
-function Quotes(props: { theme: TuiThemeCurrent }) {
-  const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)]!;
-  const split = quote.split("—");
-  const author = split.at(-1)?.trim() || "";
-  const text = split.slice(0, -1).join("—").trim();
-
-  const dimensions = useTerminalDimensions();
-  const lines = createMemo(() =>
-    wordWrap(text, Math.min(MAX_QUOTES_WIDTH, dimensions().width - 8)),
-  );
-
-  return (
-    <box width="100%" flexDirection="column" flexShrink={0}>
-      <For each={lines()}>
-        {line => (
-          <text alignSelf="center" style={{ fg: props.theme.text }}>
-            {line}
-          </text>
-        )}
-      </For>
-      <text
-        alignSelf={"center"}
-        attributes={TextAttributes.ITALIC}
-        style={{ fg: props.theme.warning }}
-      >
-        {author}
-      </text>
-    </box>
-  );
-}
-
-function View(props: { show: boolean; theme: TuiThemeCurrent }) {
-  return (
-    <box
-      minHeight={4}
-      width="100%"
-      maxWidth={MAX_QUOTES_WIDTH}
-      alignItems="center"
-      paddingY={2}
-    >
-      <Show when={props.show}>
-        <Quotes theme={props.theme} />
-      </Show>
-    </box>
-  );
-}
+import { type QuoteSource, loadCustomQuotes, getQuotesForSource, parseQuoteInput, saveCustomQuote, removeCustomQuote } from "./utils";
+import { View, SOURCE_LABELS } from "./ui";
 
 const tui: TuiPlugin = async api => {
   api.plugins.deactivate("internal:home-tips");
+
+  const initialQuotes = await loadCustomQuotes(api.state.path.config);
+  const [customQuotes, setCustomQuotes] = createSignal(initialQuotes);
 
   api.command.register(() => [
     {
@@ -111,6 +27,114 @@ const tui: TuiPlugin = async api => {
         api.ui.dialog.clear();
       },
     },
+    {
+      title: "Set quote source",
+      value: "quotes.source",
+      category: "System",
+      hidden: api.route.current.name !== "home",
+      onSelect() {
+        const current = api.kv.get("quote_source", "both") as QuoteSource;
+        api.ui.dialog.replace(() =>
+          api.ui.DialogSelect({
+            title: "Quote source",
+            options: (["builtin", "custom", "both"] as const).map(s => ({
+              title: SOURCE_LABELS[s],
+              value: s,
+            })),
+            current,
+            onSelect(option) {
+              api.kv.set("quote_source", option.value);
+              api.ui.dialog.clear();
+            },
+          }),
+        );
+      },
+    },
+    {
+      title: "Add quote",
+      value: "quotes.add",
+      category: "System",
+      hidden: api.route.current.name !== "home",
+      onSelect() {
+        api.ui.dialog.replace(() =>
+          api.ui.DialogPrompt({
+            title: "Add quote",
+            placeholder: '"Your quote here" - Author Name',
+            async onConfirm(input) {
+              const parsed = parseQuoteInput(input);
+              if (!parsed) {
+                api.ui.toast({
+                  variant: "error",
+                  message: 'Invalid format. Use: "quote" - author',
+                });
+                api.ui.dialog.clear();
+                return;
+              }
+              const ok = await saveCustomQuote(api.state.path.config, parsed);
+              if (!ok) {
+                api.ui.toast({
+                  variant: "error",
+                  message: "Failed to save quote.",
+                });
+                api.ui.dialog.clear();
+                return;
+              }
+              setCustomQuotes(prev => [...prev, parsed]);
+              api.ui.toast({
+                variant: "success",
+                message: "Quote added.",
+              });
+              api.ui.dialog.clear();
+            },
+          }),
+        );
+      },
+    },
+    {
+      title: "Remove quote",
+      value: "quotes.remove",
+      category: "System",
+      hidden: api.route.current.name !== "home",
+      onSelect() {
+        const quotes = customQuotes();
+        if (quotes.length === 0) {
+          api.ui.toast({
+            variant: "info",
+            message: "No custom quotes added.",
+          });
+          api.ui.dialog.clear();
+          return;
+        }
+        api.ui.dialog.replace(() =>
+          api.ui.DialogSelect({
+            title: "Remove quote",
+            placeholder: "Search quotes...",
+            options: quotes.map(q => ({
+              title: q.quote,
+              description: q.author,
+              value: q,
+            })),
+            async onSelect(option) {
+              const ok = await removeCustomQuote(api.state.path.config, option.value);
+              if (!ok) {
+                api.ui.toast({
+                  variant: "error",
+                  message: "Failed to remove quote.",
+                });
+                api.ui.dialog.clear();
+                return;
+              }
+              setCustomQuotes(prev => prev.filter(q => q.quote !== option.value.quote || q.author !== option.value.author));
+              api.ui.toast({
+                variant: "success",
+                message: "Quote removed.",
+              });
+              api.ui.dialog.clear();
+            },
+          }),
+        );
+      },
+    },
   ]);
 
   api.slots.register({
@@ -119,10 +143,18 @@ const tui: TuiPlugin = async api => {
       home_bottom() {
         const hidden = createMemo(() => api.kv.get("tips_hidden", false));
         const show = createMemo(() => !hidden());
-        return <View show={show()} theme={api.theme.current} />;
+        const source = createMemo(
+          () => (api.kv.get("quote_source", "both") as QuoteSource),
+        );
+        const quotes = createMemo(() =>
+          getQuotesForSource(source(), customQuotes()),
+        );
+        return <View show={show()} theme={api.theme.current} quotes={quotes()} />;
       },
     },
   });
 };
 
-export default { id: "opencode-quotes-plugin", tui } satisfies TuiPluginModule;
+const isDev = !import.meta.url.includes("node_modules");
+
+export default { id: isDev ? "opencode-quotes-plugin-test" : "opencode-quotes-plugin", tui } satisfies TuiPluginModule;
