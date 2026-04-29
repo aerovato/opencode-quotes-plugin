@@ -51,9 +51,8 @@ function wordWrap(text: string, maxWidth: number): string[] {
 
 function Quotes(props: { theme: TuiThemeCurrent }) {
   const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)]!;
-  const split = quote.split("—");
-  const author = split.at(-1)?.trim() || "";
-  const text = split.slice(0, -1).join("—").trim();
+  const author = quote.author;
+  const text = quote.quote;
 
   const dimensions = useTerminalDimensions();
   const lines = createMemo(() =>
