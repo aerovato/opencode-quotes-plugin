@@ -70,4 +70,6 @@ const tui: TuiPlugin = async api => {
   });
 };
 
-export default { id: "opencode-quotes-plugin", tui } satisfies TuiPluginModule;
+const isDev = !import.meta.url.includes("node_modules");
+
+export default { id: isDev ? "opencode-quotes-plugin-test" : "opencode-quotes-plugin", tui } satisfies TuiPluginModule;
