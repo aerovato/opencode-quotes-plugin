@@ -4,15 +4,16 @@ import type {
   TuiPlugin,
   TuiPluginModule,
 } from "@opencode-ai/plugin/tui";
-import { createMemo } from "solid-js";
+import { createMemo, createSignal } from "solid-js";
 
-import { type QuoteSource, loadCustomQuotes, getQuotesForSource } from "./utils";
+import { type QuoteSource, loadCustomQuotes, getQuotesForSource, parseQuoteInput, saveCustomQuote } from "./utils";
 import { View, SOURCE_LABELS } from "./ui";
 
 const tui: TuiPlugin = async api => {
   api.plugins.deactivate("internal:home-tips");
 
-  const customQuotes = await loadCustomQuotes(api.state.path.config);
+  const initialQuotes = await loadCustomQuotes(api.state.path.config);
+  const [customQuotes, setCustomQuotes] = createSignal(initialQuotes);
 
   api.command.register(() => [
     {
@@ -50,6 +51,47 @@ const tui: TuiPlugin = async api => {
         );
       },
     },
+    {
+      title: "Add quote",
+      description: "Add a custom quote",
+      value: "quotes.add",
+      category: "System",
+      hidden: api.route.current.name !== "home",
+      onSelect() {
+        api.ui.dialog.replace(() =>
+          api.ui.DialogPrompt({
+            title: "Add quote",
+            placeholder: '"Your quote here" - Author Name',
+            async onConfirm(input) {
+              const parsed = parseQuoteInput(input);
+              if (!parsed) {
+                api.ui.toast({
+                  variant: "error",
+                  message: 'Invalid format. Use: "quote" - author',
+                });
+                api.ui.dialog.clear();
+                return;
+              }
+              const ok = await saveCustomQuote(api.state.path.config, parsed);
+              if (!ok) {
+                api.ui.toast({
+                  variant: "error",
+                  message: "Failed to save quote.",
+                });
+                api.ui.dialog.clear();
+                return;
+              }
+              setCustomQuotes(prev => [...prev, parsed]);
+              api.ui.toast({
+                variant: "success",
+                message: "Quote added.",
+              });
+              api.ui.dialog.clear();
+            },
+          }),
+        );
+      },
+    },
   ]);
 
   api.slots.register({
@@ -62,7 +104,7 @@ const tui: TuiPlugin = async api => {
           () => (api.kv.get("quote_source", "both") as QuoteSource),
         );
         const quotes = createMemo(() =>
-          getQuotesForSource(source(), customQuotes),
+          getQuotesForSource(source(), customQuotes()),
         );
         return <View show={show()} theme={api.theme.current} quotes={quotes()} />;
       },
