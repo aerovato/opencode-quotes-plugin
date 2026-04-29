@@ -30,7 +30,9 @@
   },
   "files": [
     "tui.tsx",
-    "quotes.ts"
+    "quotes.ts",
+    "utils.ts",
+    "ui.tsx"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit"

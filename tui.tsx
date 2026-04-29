@@ -3,100 +3,16 @@
 import type {
   TuiPlugin,
   TuiPluginModule,
-  TuiThemeCurrent,
 } from "@opencode-ai/plugin/tui";
-import { createMemo, For, Show } from "solid-js";
+import { createMemo } from "solid-js";
 
-import { QUOTES } from "./quotes";
-import { TextAttributes } from "@opentui/core";
-import { useTerminalDimensions } from "@opentui/solid";
-
-const MAX_QUOTES_WIDTH = 66;
-
-function wordWrap(text: string, maxWidth: number): string[] {
-  const words = text.split(" ");
-  if (words.length === 0) {
-    return [];
-  }
-  const totalLen = text.length;
-  const targetCharsPerLine = Math.ceil(
-    totalLen / Math.ceil(totalLen / maxWidth),
-  );
-  const lines: string[] = [];
-  let wordIndex = 0;
-  let accumulatedWidth = 0;
-
-  while (wordIndex < words.length) {
-    let capacity = Math.min(
-      targetCharsPerLine + accumulatedWidth + (wordIndex === 0 ? 4 : 0),
-      maxWidth,
-    );
-    let line = words[wordIndex]!;
-    wordIndex++;
-    while (wordIndex < words.length) {
-      const test = line + " " + words[wordIndex]!;
-      if (test.length <= capacity) {
-        line = test;
-        wordIndex++;
-      } else {
-        break;
-      }
-    }
-    lines.push(line);
-    accumulatedWidth = capacity - line.length;
-  }
-
-  return lines;
-}
-
-function Quotes(props: { theme: TuiThemeCurrent }) {
-  const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)]!;
-  const author = quote.author;
-  const text = quote.quote;
-
-  const dimensions = useTerminalDimensions();
-  const lines = createMemo(() =>
-    wordWrap(text, Math.min(MAX_QUOTES_WIDTH, dimensions().width - 8)),
-  );
-
-  return (
-    <box width="100%" flexDirection="column" flexShrink={0}>
-      <For each={lines()}>
-        {line => (
-          <text alignSelf="center" style={{ fg: props.theme.text }}>
-            {line}
-          </text>
-        )}
-      </For>
-      <text
-        alignSelf={"center"}
-        attributes={TextAttributes.ITALIC}
-        style={{ fg: props.theme.warning }}
-      >
-        {author}
-      </text>
-    </box>
-  );
-}
-
-function View(props: { show: boolean; theme: TuiThemeCurrent }) {
-  return (
-    <box
-      minHeight={4}
-      width="100%"
-      maxWidth={MAX_QUOTES_WIDTH}
-      alignItems="center"
-      paddingY={2}
-    >
-      <Show when={props.show}>
-        <Quotes theme={props.theme} />
-      </Show>
-    </box>
-  );
-}
+import { type QuoteSource, loadCustomQuotes, getQuotesForSource } from "./utils";
+import { View, SOURCE_LABELS } from "./ui";
 
 const tui: TuiPlugin = async api => {
   api.plugins.deactivate("internal:home-tips");
+
+  const customQuotes = await loadCustomQuotes(api.state.path.config);
 
   api.command.register(() => [
     {
@@ -110,6 +26,30 @@ const tui: TuiPlugin = async api => {
         api.ui.dialog.clear();
       },
     },
+    {
+      title: "Quote source",
+      description: "Specify quotes source",
+      value: "quotes.source",
+      category: "System",
+      hidden: api.route.current.name !== "home",
+      onSelect() {
+        const current = api.kv.get("quote_source", "both") as QuoteSource;
+        api.ui.dialog.replace(() =>
+          api.ui.DialogSelect({
+            title: "Quote source",
+            options: (["builtin", "custom", "both"] as const).map(s => ({
+              title: SOURCE_LABELS[s],
+              value: s,
+            })),
+            current,
+            onSelect(option) {
+              api.kv.set("quote_source", option.value);
+              api.ui.dialog.clear();
+            },
+          }),
+        );
+      },
+    },
   ]);
 
   api.slots.register({
@@ -118,7 +58,13 @@ const tui: TuiPlugin = async api => {
       home_bottom() {
         const hidden = createMemo(() => api.kv.get("tips_hidden", false));
         const show = createMemo(() => !hidden());
-        return <View show={show()} theme={api.theme.current} />;
+        const source = createMemo(
+          () => (api.kv.get("quote_source", "both") as QuoteSource),
+        );
+        const quotes = createMemo(() =>
+          getQuotesForSource(source(), customQuotes),
+        );
+        return <View show={show()} theme={api.theme.current} quotes={quotes()} />;
       },
     },
   });
