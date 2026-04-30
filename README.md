@@ -1,10 +1,10 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/aerovato/opencode-quotes-plugin/main/.github/README/quote.png" alt="Quote" width="800px">
+</p>
+
 # opencode-quotes-plugin
 
 A motivational quotes plugin for OpenCode.
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/aerovato/opencode-quotes-plugin/main/.github/README/quote.png" alt="Quote">
-</p>
 
 ## Installation
 
@@ -17,12 +17,18 @@ This will install the plugin globally.
 
 ## Usage
 
-Once installed, the plugin replaces the default OpenCode tips with a rotating set of motivational quotes. Quotes are displayed at the bottom of the home screen and highlight key passages.
+Once installed, the plugin replaces the default OpenCode tips with a rotating set of motivational quotes. Quotes are displayed at the bottom of the home screen with word wrapping and centered layout.
 
-Use the command palette to toggle visibility:
+All commands are available from the command palette on the home screen:
 
-- Run **Hide tips** to hide quotes
-- Run **Show tips** to bring them back
+- **Show tips** / **Hide tips** - Toggle quote visibility
+- **Set quote source** - Choose quote sources: Built-in, Custom, or Both (default: Both)
+- **Add quote** - Add a custom quote using the format: `"Your quote here" - Author Name`
+- **Remove quote** - Search and remove a custom quote
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/aerovato/opencode-quotes-plugin/main/.github/README/settings.png" alt="Settings" width="600px">
+</p>
 
 ## Quote Requirements
 
