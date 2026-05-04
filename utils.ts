@@ -110,22 +110,35 @@ export function getQuotesForSource(
   return QUOTES;
 }
 
+/**
+ * Handcrafted heuristic for splitting block of text into semi-equi-length lines
+ */
 export function wordWrap(text: string, maxWidth: number): string[] {
   const words = text.split(" ");
   if (words.length === 0) {
     return [];
   }
+  // Reserve 1 character for trailing space on non-terminal lines.
+  // This balances visual weight when lines are centered, preventing
+  // text from appearing skewed when punctuation (e.g. ".") has low visual weight.
+  maxWidth = maxWidth - 1;
   const totalLen = text.length;
   const targetCharsPerLine = Math.ceil(
     totalLen / Math.ceil(totalLen / maxWidth),
   );
   const lines: string[] = [];
   let wordIndex = 0;
-  let accumulatedWidth = 0;
+  // Accumulated width: targetCharsPerLine will not be filled perfectly; excess
+  // width should be accumulated in future lines to accommodate.
+  //
+  // For visual beauty, prefer funnel shaped quotes: long in beginning, becoming
+  // shorter in subsequent lines. To support, add extra 4 chars to capacity of
+  // 1st line.
+  let accumulatedWidth = 4;
 
   while (wordIndex < words.length) {
     let capacity = Math.min(
-      targetCharsPerLine + accumulatedWidth + (wordIndex === 0 ? 4 : 0),
+      targetCharsPerLine + accumulatedWidth,
       maxWidth,
     );
     let line = words[wordIndex]!;
@@ -141,6 +154,11 @@ export function wordWrap(text: string, maxWidth: number): string[] {
     }
     lines.push(line);
     accumulatedWidth = capacity - line.length;
+  }
+
+  // Add trailing space to non-terminal lines for visual balance
+  for (let i = 0; i < lines.length - 1; i++) {
+    lines[i] = lines[i] + " ";
   }
 
   return lines;
