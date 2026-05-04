@@ -6,7 +6,8 @@ import type {
 } from "@opencode-ai/plugin/tui";
 import { createMemo, createSignal } from "solid-js";
 
-import { type QuoteSource, loadCustomQuotes, getQuotesForSource, parseQuoteInput, saveCustomQuote, removeCustomQuote } from "./utils";
+import { type Quote, QUOTES } from "./quotes";
+import { type QuoteSource, loadCustomQuotes, getQuotesForSource, deduplicateQuotes, parseQuoteInput, saveCustomQuote, removeCustomQuote } from "./utils";
 import { View, SOURCE_LABELS } from "./ui";
 
 const tui: TuiPlugin = async api => {
@@ -14,6 +15,7 @@ const tui: TuiPlugin = async api => {
 
   const initialQuotes = await loadCustomQuotes(api.state.path.config);
   const [customQuotes, setCustomQuotes] = createSignal(initialQuotes);
+  const [selectedQuote, setSelectedQuote] = createSignal<Quote | null>(null);
 
   api.command.register(() => [
     {
@@ -110,8 +112,7 @@ const tui: TuiPlugin = async api => {
             title: "Remove quote",
             placeholder: "Search quotes...",
             options: quotes.map(q => ({
-              title: q.quote,
-              description: q.author,
+              title: `${q.quote} - ${q.author}`,
               value: q,
             })),
             async onSelect(option) {
@@ -135,6 +136,29 @@ const tui: TuiPlugin = async api => {
         );
       },
     },
+    {
+      title: "Select quote",
+      value: "quotes.select",
+      category: "System",
+      hidden: api.route.current.name !== "home",
+      onSelect() {
+        const all = deduplicateQuotes([...QUOTES, ...customQuotes()]);
+        api.ui.dialog.replace(() =>
+          api.ui.DialogSelect({
+            title: "Select quote",
+            placeholder: "Search quotes...",
+            options: all.map(q => ({
+              title: `${q.quote} - ${q.author}`,
+              value: q,
+            })),
+            onSelect(option) {
+              setSelectedQuote(option.value);
+              api.ui.dialog.clear();
+            },
+          }),
+        );
+      },
+    },
   ]);
 
   api.slots.register({
@@ -149,7 +173,7 @@ const tui: TuiPlugin = async api => {
         const quotes = createMemo(() =>
           getQuotesForSource(source(), customQuotes()),
         );
-        return <View show={show()} theme={api.theme.current} quotes={quotes()} />;
+        return <View show={show()} theme={api.theme.current} quotes={quotes()} selected={selectedQuote} />;
       },
     },
   });
