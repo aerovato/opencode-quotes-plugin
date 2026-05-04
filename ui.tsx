@@ -1,6 +1,7 @@
 /** @jsxImportSource @opentui/solid */
 
 import type { TuiThemeCurrent } from "@opencode-ai/plugin/tui";
+import type { Accessor } from "solid-js";
 import { createMemo, For, Show } from "solid-js";
 import type { Quote } from "./quotes";
 import type { QuoteSource } from "./utils";
@@ -16,14 +17,18 @@ export const SOURCE_LABELS: Record<QuoteSource, string> = {
   both: "Both",
 };
 
-function Quotes(props: { theme: TuiThemeCurrent; quotes: Quote[] }) {
-  const quote = props.quotes[Math.floor(Math.random() * props.quotes.length)];
-  const text = quote?.quote ?? "No custom quotes configured.";
-  const author = quote?.author ?? "Add a custom quote via the `Add quote` command.";
+function Quotes(props: { theme: TuiThemeCurrent; quotes: Quote[]; selected: Accessor<Quote | null> }) {
+  const display = createMemo(() => {
+    const q = props.selected() ?? props.quotes[Math.floor(Math.random() * props.quotes.length)];
+    return {
+      text: q?.quote ?? "No custom quotes configured.",
+      author: q?.author ?? "Add a custom quote via the `Add quote` command.",
+    };
+  });
 
   const dimensions = useTerminalDimensions();
   const lines = createMemo(() =>
-    wordWrap(text, Math.min(MAX_QUOTES_WIDTH, dimensions().width - 8)),
+    wordWrap(display().text, Math.min(MAX_QUOTES_WIDTH, dimensions().width - 8)),
   );
 
   return (
@@ -40,7 +45,7 @@ function Quotes(props: { theme: TuiThemeCurrent; quotes: Quote[] }) {
         attributes={TextAttributes.ITALIC}
         style={{ fg: props.theme.warning }}
       >
-        {author}
+        {display().author}
       </text>
     </box>
   );
@@ -50,6 +55,7 @@ export function View(props: {
   show: boolean;
   theme: TuiThemeCurrent;
   quotes: Quote[];
+  selected: Accessor<Quote | null>;
 }) {
   return (
     <box
@@ -60,7 +66,7 @@ export function View(props: {
       paddingY={2}
     >
       <Show when={props.show}>
-        <Quotes theme={props.theme} quotes={props.quotes} />
+        <Quotes theme={props.theme} quotes={props.quotes} selected={props.selected} />
       </Show>
     </box>
   );
