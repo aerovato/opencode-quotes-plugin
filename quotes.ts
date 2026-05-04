@@ -39,6 +39,15 @@ export const QUOTES: Quote[] = [
       "The mechanic, who wishes to do his work well, must first sharpen his tools.",
     author: "Confucius",
   },
+  {
+    quote: "It always seems impossible until it's done.",
+    author: "Nelson Mandela",
+  },
+  {
+    quote:
+      "Amateurs sit and wait for inspiration, the rest of us just get up and go to work.",
+    author: "Stephen King",
+  },
 
   // Success & Achievement
   {
@@ -152,6 +161,14 @@ export const QUOTES: Quote[] = [
       "In the depth of winter, I finally learned that within me there lay an invincible summer.",
     author: "Albert Camus",
   },
+  {
+    quote: "Believe you can and you're halfway there.",
+    author: "Theodore Roosevelt",
+  },
+  {
+    quote: "If you are going through hell, keep going.",
+    author: "Disputed",
+  },
 
   // Knowledge, Learning, & Wisdom
   { quote: "The more you learn, the more you earn.", author: "Warren Buffett" },
@@ -203,6 +220,15 @@ export const QUOTES: Quote[] = [
       "If you would not be forgotten, as soon as you are dead and rotten, either write things worth reading, or do things worth the writing.",
     author: "Benjamin Franklin",
   },
+  {
+    quote: "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+    author: "Mahatma Gandhi",
+  },
+  {
+    quote: "I have no special talent. I am only passionately curious.",
+    author: "Albert Einstein",
+  },
+  { quote: "Knowledge is power.", author: "Francis Bacon" },
 
   // Creation, Design, & Innovation
   {
@@ -250,6 +276,14 @@ export const QUOTES: Quote[] = [
       "Great things are done by a series of small things brought together.",
     author: "Vincent van Gogh",
   },
+  {
+    quote: "Every artist was first an amateur.",
+    author: "Ralph Waldo Emerson",
+  },
+  {
+    quote: "The painter has the Universe in his mind and hands.",
+    author: "Leonardo da Vinci",
+  },
 
   // Action & Execution
   {
@@ -291,12 +325,21 @@ export const QUOTES: Quote[] = [
   },
   {
     quote:
+      "Do not wait to strike till the iron is hot; but make it hot by striking.",
+    author: "William Butler Yeats",
+  },
+  {
+    quote:
       "The philosophers have only interpreted the world in various ways; the point is to change it.",
     author: "Karl Marx",
   },
   {
     quote: "The man who moves a mountain begins by carrying away small stones.",
     author: "Confucius",
+  },
+  {
+    quote: "One finds limits by pushing them.",
+    author: "Herbert Simon",
   },
 
   // Character & Self—Mastery
@@ -436,5 +479,13 @@ export const QUOTES: Quote[] = [
   {
     quote: "I am seeking, I am striving, I am in it with all my heart.",
     author: "Vincent van Gogh",
+  },
+  {
+    quote: "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+    author: "Ralph Waldo Emerson",
+  },
+  {
+    quote: "Carpe diem.",
+    author: "Horace",
   },
 ];
